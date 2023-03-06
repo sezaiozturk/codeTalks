@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>690976384967-fljqutdjblspso8ds1lgg9b4adc42suc.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.690976384967-fljqutdjblspso8ds1lgg9b4adc42suc</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDManNZ3_p7QXNASMirtN3fNdHEg6s-XXM</string>
+	<key>GCM_SENDER_ID</key>
+	<string>690976384967</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>org.reactjs.native.example.codeTalks</string>
+	<key>PROJECT_ID</key>
+	<string>codetalks-a518c</string>
+	<key>STORAGE_BUCKET</key>
+	<string>codetalks-a518c.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:690976384967:ios:f2189cfbf38ce279349be2</string>
+</dict>
+</plist>
