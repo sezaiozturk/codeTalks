@@ -16,14 +16,6 @@ const App = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name='RoomsPage'
-          component={Rooms}
-          options={{
-            headerTintColor: Colors.orange_dark,
-            title: 'Rooms'
-          }}
-        />
-        <Stack.Screen
           name='ChatPage'
           component={Chat}
           options={{
@@ -33,6 +25,14 @@ const App = () => {
               size={30}
               color={Colors.orange_dark}
             />
+          }}
+        />
+        <Stack.Screen
+          name='RoomsPage'
+          component={Rooms}
+          options={{
+            headerTintColor: Colors.orange_dark,
+            title: 'Rooms'
           }}
         />
         <Stack.Screen

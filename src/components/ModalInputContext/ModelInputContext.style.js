@@ -21,6 +21,7 @@ export default StyleSheet.create({
         flex: 1
     },
     input: {
-        color: 'black'
+        fontSize: 20,
+        margin: 10
     }
 })

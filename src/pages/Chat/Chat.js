@@ -9,9 +9,9 @@ const Chat = ({ roomName }) => {
     function handleModalToggle() {
         setModelVisible(!modalVisible);
     }
-    function handleMessage() {
+    function handleMessage(text) {
         handleModalToggle();
-        //Add room codes
+        //console.log(text);
     }
     return (
         <View style={styles.container}>

@@ -1,10 +1,8 @@
 import { View, Text, TextInput } from 'react-native'
 import React, { useState } from 'react'
-import Input from '../Input'
 import Button from '../Button';
 import Modal from 'react-native-modal'
 import styles from './ModelInputContext.style'
-import Colors from '../../styles/Colors/Colors';
 
 const ModelInputContext = ({ visible, onSend, onClose, buttonTitle, placeHolder }) => {
     const [text, setText] = useState('');
@@ -19,10 +17,9 @@ const ModelInputContext = ({ visible, onSend, onClose, buttonTitle, placeHolder 
             <View style={styles.container}>
                 <View style={styles.top_container}>
                     <TextInput
-                        placeHolder={"dfgfd"}
-                        onChangeText={setText}
                         style={styles.input}
-                        placeholderTextColor={Colors.orange_dark}
+                        placeholder={`${placeHolder}...`}
+                        onChangeText={setText}
                     />
                 </View>
                 <View style={styles.bottom_container}>
