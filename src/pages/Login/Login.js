@@ -31,11 +31,13 @@ const Login = ({ navigation }) => {
                             <Input
                                 onChangeText={handleChange('mail')}
                                 onValue={values.mail}
+                                placeholder={"Enter your e-mail"}
                             />
                             <Input
                                 onChangeText={handleChange('password')}
                                 onValue={values.password}
                                 secureTextEntry
+                                placeholder={"Enter your password"}
                             />
                         </View>
                         <View style={styles.button_container}>
