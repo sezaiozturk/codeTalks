@@ -4,14 +4,24 @@ import Button from '../../components/Button'
 import Input from '../../components/Input'
 import { Formik } from 'formik'
 import styles from './Login.style'
+import auth from '@react-native-firebase/auth'
+import { showMessage } from 'react-native-flash-message'
 
 const Login = ({ navigation }) => {
     const initialValues = {
         mail: '',
         password: ''
     }
-    function handleLogin(values) {
-        console.log(values);
+    function handleLogin({ mail, password }) {
+        auth().signInWithEmailAndPassword(mail, password)
+            .then(() => {
+                navigation.navigate('RoomsPage')
+            })
+            .catch((error) => {
+                showMessage({
+                    message: error.code
+                })
+            })
     }
     function handleSignUp() {
         navigation.navigate('SignUpPage');

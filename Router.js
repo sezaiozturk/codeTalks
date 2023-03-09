@@ -9,12 +9,23 @@ import Rooms from './src/pages/Rooms'
 import Chat from './src/pages/Chat'
 import Colors from './src/styles/Colors/Colors'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import FlashMessage from "react-native-flash-message";
 
 const App = () => {
   const Stack = createStackNavigator();
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen
+          name='LoginPage'
+          component={Login}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name='SignUpPage'
+          component={SignUp}
+          options={{ headerShown: false }}
+        />
         <Stack.Screen
           name='ChatPage'
           component={Chat}
@@ -35,17 +46,8 @@ const App = () => {
             title: 'Rooms'
           }}
         />
-        <Stack.Screen
-          name='LoginPage'
-          component={Login}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name='SignUpPage'
-          component={SignUp}
-          options={{ headerShown: false }}
-        />
       </Stack.Navigator>
+      <FlashMessage position="top" />
     </NavigationContainer>
   )
 }

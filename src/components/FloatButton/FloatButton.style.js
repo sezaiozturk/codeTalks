@@ -11,8 +11,8 @@ export default StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         position: 'absolute',
-        right: 20,
-        bottom: 20
+        right: 15,
+        bottom: 15
     },
     icon: {
         fontSize: 20,

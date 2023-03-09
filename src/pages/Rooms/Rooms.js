@@ -1,23 +1,53 @@
 import { View, Text, FlatList } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './Rooms.style'
 import RoomButton from '../../components/RoomButton'
 import FloatButton from '../../components/FloatButton'
 import ModalInputContext from '../../components/ModalInputContext'
+import firestore from '@react-native-firebase/firestore';
+import { showMessage } from 'react-native-flash-message'
 
 const Rooms = () => {
     const [modalVisible, setModelVisible] = useState(false);
+    const [rooms, setRooms] = useState([]);
+    useEffect(() => {
+        firestore()
+            .collection('Rooms')
+            .onSnapshot(querySnapshot => {
+                const roomList = [];
+                querySnapshot.forEach(documentSnapshot => {
+                    roomList.push({
+                        ...documentSnapshot.data()
+                    })
+                });
+                setRooms(roomList);
+            });
+    }, []);
     function handleModalToggle() {
         setModelVisible(!modalVisible);
     }
     function handleSend(roomName) {
         handleModalToggle();
-        //Add room codes
+        openRoom(roomName);
     }
-    const dizi = ["room1", "room2", "room3", "room4", "room5"];
+    function openRoom(roomName) {
+        firestore().collection("Rooms")
+            .add({ roomName })
+            .then(() => {
+                showMessage({
+                    message: `${roomName} is opened`
+                })
+            })
+            .catch((error) => {
+                showMessage({
+                    message: error.code
+                })
+            })
+    }
+    const renderItem = ({ item }) => <RoomButton title={item.roomName} />
     return (
         <View style={styles.container}>
-            <FlatList data={dizi} renderItem={({ item }) => <RoomButton title={item} />} numColumns={2} />
+            <FlatList data={rooms} renderItem={renderItem} numColumns='2' />
             <FloatButton onPress={handleModalToggle} />
             <ModalInputContext
                 visible={modalVisible}

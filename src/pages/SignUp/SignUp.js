@@ -1,9 +1,11 @@
-import { View, Text, SafeAreaView } from 'react-native'
+import { View, Text, SafeAreaView, Alert } from 'react-native'
 import React from 'react'
 import styles from './SignUp.style'
 import Button from '../../components/Button'
 import Input from '../../components/Input'
 import { Formik } from 'formik'
+import { showMessage, hideMessage } from "react-native-flash-message";
+import auth from '@react-native-firebase/auth'
 
 const SignUp = ({ navigation }) => {
     const initialValues = {
@@ -11,8 +13,37 @@ const SignUp = ({ navigation }) => {
         password: '',
         rePassword: ''
     }
-    function handleSignUp(values) {
-        console.log(values);
+    function handleSignUp({ mail, password, rePassword }) {
+        if (password != rePassword) {
+            showMessage({
+                message: 'Warning',
+                type: 'danger',
+                description: 'passwords are different',
+                backgroundColor: 'white',
+                color: 'black'
+            });
+            return;
+        }
+        auth().createUserWithEmailAndPassword(mail, password)
+            .then(() => {
+                navigation.goBack();
+            })
+            .catch((error) => {
+                if (error.code === 'auth/email-already-in-use') {
+                    showMessage({
+                        message: 'That email address is already in use!'
+                    });
+                }
+
+                if (error.code === 'auth/invalid-email') {
+                    showMessage({
+                        message: 'That email address is invalid!'
+                    });
+                }
+                showMessage({
+                    message: error.code
+                });
+            })
     }
     function handleBack() {
         navigation.goBack();
