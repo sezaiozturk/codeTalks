@@ -7,7 +7,7 @@ import ModalInputContext from '../../components/ModalInputContext'
 import firestore from '@react-native-firebase/firestore';
 import { showMessage } from 'react-native-flash-message'
 
-const Rooms = () => {
+const Rooms = ({ navigation }) => {
     const [modalVisible, setModelVisible] = useState(false);
     const [rooms, setRooms] = useState([]);
     useEffect(() => {
@@ -17,8 +17,12 @@ const Rooms = () => {
                 const roomList = [];
                 querySnapshot.forEach(documentSnapshot => {
                     roomList.push({
-                        ...documentSnapshot.data()
+                        ...documentSnapshot.data(),
+                        id: documentSnapshot.id
                     })
+                });
+                roomList.sort(function (a, b) {
+                    return (a.date > b.date) ? -1 : ((a.date > b.date) ? 1 : 0);
                 });
                 setRooms(roomList);
             });
@@ -32,7 +36,10 @@ const Rooms = () => {
     }
     function openRoom(roomName) {
         firestore().collection("Rooms")
-            .add({ roomName })
+            .add({
+                roomName,
+                date: new Date().toISOString()
+            })
             .then(() => {
                 showMessage({
                     message: `${roomName} is opened`
@@ -44,7 +51,16 @@ const Rooms = () => {
                 })
             })
     }
-    const renderItem = ({ item }) => <RoomButton title={item.roomName} />
+    function handleGoToChat({ id, roomName }) {
+        navigation.navigate('ChatPage', {
+            id,
+            roomName
+        });
+    }
+    const renderItem = ({ item }) => <RoomButton
+        title={item.roomName}
+        onPress={() => handleGoToChat(item)}
+    />
     return (
         <View style={styles.container}>
             <FlatList data={rooms} renderItem={renderItem} numColumns='2' />
